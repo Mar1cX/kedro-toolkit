@@ -1,0 +1,32 @@
+{
+  "create_pipeline": {
+    "prefix": "create_pipeline",
+    "body": [
+      "from kedro.pipeline import Pipeline, node",
+      "",
+      "def create_pipeline(**kwargs):",
+      "    return Pipeline(",
+      "        [",
+      "            node(",
+      "                func=...,",
+      "                inputs=['...', 'params:...'],",
+      "                outputs=['...', '...'],",
+      "                name='...',",
+      "            ),",
+      "        ]",
+      "    )"
+    ]
+  },
+  "node": {
+    "prefix": "node",
+    "body": [
+      "node(",
+      "    func=...,",
+      "    inputs=['...', '...']",
+      "    outputs=['...', '...']",
+      "    name='...'",
+      ")"
+    ],
+    "description": "Kedro node"
+  }
+}

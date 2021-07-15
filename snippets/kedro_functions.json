@@ -15,7 +15,8 @@
       "            ),",
       "        ]",
       "    )"
-    ]
+    ],
+    "description": "Add complete Kedro Pipeline creation structure"
   },
   "node": {
     "prefix": "node",
@@ -27,6 +28,6 @@
       "    name='...'",
       ")"
     ],
-    "description": "Kedro node"
+    "description": "Add Kedro Node to the Pipeline body"
   }
 }

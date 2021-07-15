@@ -78,17 +78,63 @@ export function activate(context: vscode.ExtensionContext) {
 	const catalogListAutocomplete = vscode.languages.registerCompletionItemProvider('yaml', {
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 				const linePrefix = document.lineAt(position).text.substr(0, position.character);
-				if (!linePrefix.endsWith('type:')) {
+				if (!linePrefix.endsWith('type: ')) {
+					return undefined;
+				}
+
+        // TODO: Completion should work even when typing is starting not from type, but from package
+        // For example: writing api. should display APIDataSet as a dropdown option
+
+				return [
+          new vscode.CompletionItem('api.APIDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('biosequence.BioSequenceDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('dask.ParquetDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('email.EmailMessageDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('geopandas.GeoJSONDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('holoviews.HoloviewsWriter', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('json.JSONDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('matplotlib.MatplotlibWriter', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('networkx.NetworkXDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.CSVDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.ExcelDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.AppendableExcelDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.FeatherDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.GBQTableDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.HDFDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.JSONDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.ParquetDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.SQLQueryDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pandas.SQLTableDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pickle.PickleDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('pillow.ImageDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('plotly.PlotlyDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('spark.SparkDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('spark.SparkHiveDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('spark.SparkJDBCDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('tensorflow.TensorFlowModelDataset', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('text.TextDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('yaml.YAMLDataSet', vscode.CompletionItemKind.Method)
+				];
+			}
+		},
+		' ' // triggered whenever a 'type:' is being typed
+	);
+
+
+	const apiDatasetAutocomplete = vscode.languages.registerCompletionItemProvider('yaml', {
+    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+				const linePrefix = document.lineAt(position).text.substr(0, position.character);
+				if (!linePrefix.endsWith('api.')) {
 					return undefined;
 				}
 
 				return [
-					new vscode.CompletionItem(' pandas.CSVDataSet', vscode.CompletionItemKind.Method),
+          new vscode.CompletionItem('APIDataSet', vscode.CompletionItemKind.Method),
 				];
 			}
 		},
-		':' // triggered whenever a 'type:' is being typed
+		'.' // triggered whenever a '.' is being typed
 	);
 
-  context.subscriptions.push(paramsAutocomplete, configAutocomplete, paramsListAutocomplete, catalogListAutocomplete);
+  context.subscriptions.push(paramsAutocomplete, configAutocomplete, paramsListAutocomplete, catalogListAutocomplete, apiDatasetAutocomplete);
 }

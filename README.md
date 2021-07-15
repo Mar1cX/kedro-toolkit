@@ -1,20 +1,13 @@
-# kedro-toolkit README
-
-This is the README for your extension "kedro-toolkit". After writing up a brief description, we recommend including the following sections.
+# Kedro Toolkit
+Kedro Toolkit includes various utilities for the VSCode that should be helpful to avoid mistakes, speed up the coding and generally helps coding with Kedro easier, such as Kedro Function snippets, Kedro Pipelines execution through Debug, autocompletion for the parameters etc..
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+* Repetitive Kedro functions added as snippets to speed up the coding:
+![create_pipeline/node snippets](images/snippets.gif)
 
 ## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Currently supports latest Kedro version 0.17.4.
 
 ## Extension Settings
 
